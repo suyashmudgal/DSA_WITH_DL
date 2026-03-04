@@ -1,3 +1,4 @@
+// wave print
 #include <bits/stdc++.h>
 using namespace std;
 
