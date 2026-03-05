@@ -1,19 +1,24 @@
-// program 7
-class Solution {
-public:
-    int minOperations(string s) {
+#include <bits/stdc++.h>
+using namespace std;
 
-        int count1 = 0, count2 = 0;
+int frogJump(int n, vector<int> &heights)
+{
+    int prev = 0;
+    int prev2 = 0;
 
-        for(int i = 0; i < s.size(); i++) {
+    for(int i = 1; i < n; i++)
+    {
+        int jump1 = prev + abs(heights[i] - heights[i-1]);
 
-            if(s[i] != (i % 2 ? '1' : '0'))
-                count1++;
+        int jump2 = INT_MAX;
+        if(i > 1)
+            jump2 = prev2 + abs(heights[i] - heights[i-2]);
 
-            if(s[i] != (i % 2 ? '0' : '1'))
-                count2++;
-        }
+        int curr = min(jump1, jump2);
 
-        return min(count1, count2);
+        prev2 = prev;
+        prev = curr;
     }
-};
+
+    return prev;
+}
